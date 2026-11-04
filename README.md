@@ -25,7 +25,12 @@ powershell -ExecutionPolicy Bypass -File install.ps1
 
 Restart Claude Code afterwards.
 
-The installer copies everything into `~/.claude`. Any file it would replace is first moved to `~/.claude/backups/engineering-setup-<date>`, so nothing is lost. It also installs the [graphify](https://pypi.org/project/graphifyy/) skill from its own package (needs Python or `uv`); skip that with `-NoGraphify` / `--no-graphify`.
+The installer copies everything into `~/.claude`. Any file it would replace is first moved to `~/.claude/backups/engineering-setup-<date>`, so nothing is lost. It also:
+
+- Downloads the [AMD Ross Agentic AI Assistant](https://github.com/Xilinx/ross-ai-assistant) at a pinned commit and installs **only the 16 skills listed in [ross-skills.txt](ross-skills.txt)** (Vivado, ILA/VIO, segmented configuration, Vitis embedded). HLS and Vitis AI skills are left out. It also registers AMD's `amd-doc-search` documentation MCP server (uses Python to edit `~/.claude.json` when the `claude` CLI is not on PATH; a backup is saved next to it). Skip with `-NoRoss` / `--no-ross`.
+- Installs the [graphify](https://pypi.org/project/graphifyy/) skill from its own package (needs Python or `uv`). Skip with `-NoGraphify` / `--no-graphify`.
+
+To install a different set of AMD skills, edit `ross-skills.txt` before running the installer.
 
 To update later: `git pull`, then run the installer again.
 
@@ -70,9 +75,11 @@ To change a model, edit the `model:` line at the top of the agent's file (`opus`
 | build-log-filter | Save long build logs to disk and extract only the useful errors |
 | grilling | Structured clarifying questions before work starts |
 | graphify | Codebase knowledge graph (installed by the installer from its own package) |
+| AMD Ross (16) | `hw-ila-debug`, `hw-vio-debug`, `vitis-embedded`, `vivado-ip-configurator`, `vivado-revision-control`, `vivado-rtl-elaboration-analysis`, `vivado-rtl-lint`, `vivado-simulate-rtl`, `vivado-timing-methodology-checks`, and 7 `segcfg-*` skills |
 
 ## Notes
 
-- The Vivado and hardware-debug agents mention AMD skills (`hw-ila-debug`, IP configurator, timing checks, etc.) from AMD's assistant plugin. Those are not included here; the agents work without them.
+- Several AMD Ross skills drive Vivado through AMD's **Vivado MCP server**, which is a separate download from the [AMD Ross page](https://www.amd.com/en/support/downloads/ross-agentic-ai.html) and is not installed by this repo.
+- AMD Ross skills are © Advanced Micro Devices, Inc., MIT licensed; each installed skill gets a `LICENSE-AMD-ROSS` copy.
 - MicroBlaze and Zynq platform notes are in [claude/team/platforms/](claude/team/platforms/).
 - The `grilling` skill is by Matt Pocock, MIT licensed (see [its LICENSE](claude/skills/grilling/LICENSE)).

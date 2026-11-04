@@ -1,0 +1,22 @@
+# AMD Ross Agentic AI Assistant skills to install (MIT, https://github.com/Xilinx/ross-ai-assistant).
+# The installer fetches this exact commit and copies only the skills listed below.
+# HLS (hls-*) and Vitis AI (vai-*) skills are intentionally left out.
+
+commit dce0fb90611b144dd529490359b51cea5d0d5596
+
+hw-ila-debug
+hw-vio-debug
+segcfg-aie
+segcfg-design-check
+segcfg-design-considerations
+segcfg-dfx
+segcfg-hw-manager
+segcfg-overview
+segcfg-pl-reload
+vitis-embedded
+vivado-ip-configurator
+vivado-revision-control
+vivado-rtl-elaboration-analysis
+vivado-rtl-lint
+vivado-simulate-rtl
+vivado-timing-methodology-checks

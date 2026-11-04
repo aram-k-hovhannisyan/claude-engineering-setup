@@ -1,18 +1,37 @@
 #!/usr/bin/env bash
 # Installs the engineering team setup into ~/.claude (macOS / Linux / Git Bash).
-# Usage:  ./install.sh [--no-graphify]
+# Usage:  ./install.sh [--no-ross] [--no-graphify]
 
 set -euo pipefail
 
-source_dir="$(cd "$(dirname "$0")" && pwd)/claude"
+repo_dir="$(cd "$(dirname "$0")" && pwd)"
+source_dir="$repo_dir/claude"
 target="$HOME/.claude"
 backup="$target/backups/engineering-setup-$(date +%Y%m%d-%H%M%S)"
+install_ross=1
 install_graphify=1
 
-if [ "${1:-}" = "--no-graphify" ]
-then
-    install_graphify=0
-fi
+for arg in "$@"
+do
+    case "$arg" in
+        --no-ross)
+            install_ross=0
+            ;;
+        --no-graphify)
+            install_graphify=0
+            ;;
+    esac
+done
+
+backup_item()
+{
+    if [ -e "$target/$1" ]
+    then
+        mkdir -p "$(dirname "$backup/$1")"
+        mv "$target/$1" "$backup/$1"
+        echo "Backed up  $1"
+    fi
+}
 
 mkdir -p "$target/agents" "$target/skills"
 
@@ -25,16 +44,46 @@ done
 
 for item in $items
 do
-    if [ -e "$target/$item" ]
-    then
-        mkdir -p "$(dirname "$backup/$item")"
-        mv "$target/$item" "$backup/$item"
-        echo "Backed up  $item"
-    fi
-
+    backup_item "$item"
     cp -R "$source_dir/$item" "$target/$item"
     echo "Installed  $item"
 done
+
+if [ "$install_ross" -eq 1 ]
+then
+    echo
+    echo "Installing AMD Ross skills (pinned commit, listed in ross-skills.txt)..."
+    lines="$(grep -v -e '^#' -e '^[[:space:]]*$' "$repo_dir/ross-skills.txt" | tr -d '\r')"
+    commit="$(echo "$lines" | sed -n 's/^commit[[:space:]]*//p')"
+    ross_skills="$(echo "$lines" | grep -v '^commit')"
+    ross_dir="$(mktemp -d)"
+
+    git init -q "$ross_dir"
+    git -C "$ross_dir" fetch -q --depth 1 https://github.com/Xilinx/ross-ai-assistant.git "$commit"
+    git -C "$ross_dir" -c advice.detachedHead=false checkout -q FETCH_HEAD
+
+    for skill in $ross_skills
+    do
+        backup_item "skills/$skill"
+        cp -R "$ross_dir/skills/$skill" "$target/skills/$skill"
+        cp "$ross_dir/LICENSE" "$target/skills/$skill/LICENSE-AMD-ROSS"
+        echo "Installed  skills/$skill"
+    done
+    rm -rf "$ross_dir"
+
+    # AMD documentation search MCP server, used by the vendor-docs agent.
+    mcp_url="https://ross.amd.com/mcp/doc-search"
+    if command -v claude >/dev/null 2>&1
+    then
+        claude mcp add --transport http --scope user amd-doc-search "$mcp_url" || true
+    elif command -v python3 >/dev/null 2>&1
+    then
+        python3 "$repo_dir/scripts/add_mcp_server.py" amd-doc-search "$mcp_url"
+    else
+        echo "WARNING: add the AMD doc-search MCP server later:"
+        echo "  claude mcp add --transport http --scope user amd-doc-search $mcp_url"
+    fi
+fi
 
 if [ "$install_graphify" -eq 1 ]
 then
