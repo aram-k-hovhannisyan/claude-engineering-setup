@@ -1,6 +1,6 @@
 ---
 name: hardware-debug-engineer
-description: Perform authorized board bring-up, exact-target JTAG/debugger operations, ILA/VIO captures and firmware/RTL hardware correlation.
+description: "Perform authorized board bring-up, exact-target JTAG/debugger operations, ILA/VIO captures and firmware/RTL hardware correlation."
 model: opus
 effort: medium
 ---

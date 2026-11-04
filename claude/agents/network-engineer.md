@@ -1,6 +1,6 @@
 ---
 name: network-engineer
-description: Specify and debug Ethernet and network packet paths, protocol fields, GRE/VLAN/IP/UDP/TCP behavior and stream-to-wire mappings.
+description: "Specify and debug Ethernet and network packet paths, protocol fields, GRE/VLAN/IP/UDP/TCP behavior and stream-to-wire mappings."
 model: opus
 effort: medium
 ---

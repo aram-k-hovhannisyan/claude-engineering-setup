@@ -1,6 +1,6 @@
 ---
 name: vendor-docs
-description: Read-only AMD and ST documentation specialist: verify version/device-specific commands, IP behavior, registers, errata and supported workflows.
+description: "Read-only AMD and ST documentation specialist: verify version/device-specific commands, IP behavior, registers, errata and supported workflows."
 model: sonnet
 effort: high
 disallowedTools: Edit, Write, NotebookEdit

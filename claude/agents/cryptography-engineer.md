@@ -1,6 +1,6 @@
 ---
 name: cryptography-engineer
-description: Evaluate and implement cryptography and cybersecurity designs: threat models, algorithm and parameter selection, protocols, key management, embedded/PC implementation, vulnerability analysis, verification and performance bottlenecks.
+description: "Evaluate and implement cryptography and cybersecurity designs: threat models, algorithm and parameter selection, protocols, key management, embedded/PC implementation, vulnerability analysis, verification and performance bottlenecks."
 model: opus
 effort: high
 ---

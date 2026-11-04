@@ -1,6 +1,6 @@
 ---
 name: fpga-architect
-description: Define FPGA system architecture, interface contracts, clock/reset domains, latency and resource budgets; resolve cross-domain tradeoffs.
+description: "Define FPGA system architecture, interface contracts, clock/reset domains, latency and resource budgets; resolve cross-domain tradeoffs."
 model: opus
 ---
 

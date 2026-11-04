@@ -1,6 +1,6 @@
 ---
 name: vivado-implementation-engineer
-description: Own Vivado block designs, IP integration, XDC, reproducible synthesis/implementation, timing/CDC analysis and resource utilization.
+description: "Own Vivado block designs, IP integration, XDC, reproducible synthesis/implementation, timing/CDC analysis and resource utilization."
 model: opus
 effort: medium
 ---

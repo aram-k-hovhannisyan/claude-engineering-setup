@@ -1,6 +1,6 @@
 ---
 name: board-pcb-engineer
-description: Review board schematics, pin assignments, power/reset circuits and PCB interfaces.
+description: "Review board schematics, pin assignments, power/reset circuits and PCB interfaces."
 model: opus
 effort: high
 ---

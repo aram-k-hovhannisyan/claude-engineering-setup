@@ -1,6 +1,6 @@
 ---
 name: design-reviewer
-description: Independently review engineering changes for contract compliance, correctness, integration risks and missing verification, without modifying files.
+description: "Independently review engineering changes for contract compliance, correctness, integration risks and missing verification, without modifying files."
 model: opus
 disallowedTools: Edit, Write, NotebookEdit
 ---

@@ -1,6 +1,6 @@
 ---
 name: embedded-software-engineer
-description: Implement STM32, MicroBlaze and Zynq firmware/software: startup, BSPs, drivers, interrupts, DMA, linker placement and hardware/software integration.
+description: "Implement STM32, MicroBlaze and Zynq firmware/software: startup, BSPs, drivers, interrupts, DMA, linker placement and hardware/software integration."
 model: opus
 effort: medium
 ---

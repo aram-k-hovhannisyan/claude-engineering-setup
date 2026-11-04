@@ -1,6 +1,6 @@
 ---
 name: verification-engineer
-description: Design independent reference models, assertions, scoreboards and bounded RTL/firmware regressions; reproduce failures and assess coverage.
+description: "Design independent reference models, assertions, scoreboards and bounded RTL/firmware regressions; reproduce failures and assess coverage."
 model: opus
 ---
 

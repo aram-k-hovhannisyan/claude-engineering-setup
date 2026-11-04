@@ -1,6 +1,6 @@
 ---
 name: rtl-engineer
-description: Implement or repair synthesizable Verilog, SystemVerilog or VHDL modules and streaming/AXI data paths against an agreed interface contract.
+description: "Implement or repair synthesizable Verilog, SystemVerilog or VHDL modules and streaming/AXI data paths against an agreed interface contract."
 model: opus
 effort: medium
 ---

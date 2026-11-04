@@ -1,6 +1,6 @@
 ---
 name: software-engineer
-description: Design, implement and debug modern C++ software and Qt applications: architecture, OOP, ownership, concurrency, Widgets/QML, model/view, CMake and automated testing.
+description: "Design, implement and debug modern C++ software and Qt applications: architecture, OOP, ownership, concurrency, Widgets/QML, model/view, CMake and automated testing."
 model: opus
 effort: medium
 ---

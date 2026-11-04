@@ -1,6 +1,6 @@
 ---
 name: dsp-algorithm-engineer
-description: Design DSP algorithms and fixed-point implementations for FPGA and embedded targets.
+description: "Design DSP algorithms and fixed-point implementations for FPGA and embedded targets."
 model: opus
 effort: medium
 ---

@@ -1,6 +1,6 @@
 ---
 name: release-devops-engineer
-description: Own assigned Git workflows, CI, reproducible builds, packaging and releases.
+description: "Own assigned Git workflows, CI, reproducible builds, packaging and releases."
 model: opus
 effort: medium
 ---
