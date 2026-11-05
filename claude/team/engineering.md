@@ -62,6 +62,17 @@ For STM32 implementation load `stm32-firmware`; for STM32 programming/debug load
 For MicroBlaze load `platforms/microblaze.md`; for Zynq/Zynq UltraScale+ MPSoC load `platforms/zynq.md`. Do not load either for STM32-only tasks. HLS and Vitis AI are outside this team's scope.
 
 
+## FPGA project layout
+
+Place each Vivado project directly in its design folder, not in a `build/` subfolder:
+`<design>/<project_name>.xpr` with the generated `<project_name>.runs/`, `.cache/`,
+`.hw/`, `.sim/` and `.ip_user_files/` beside `rtl/`, `tb/`, `constraints/`, `scripts/`
+and `docs/`. Put any software for that design (Vitis workspace, platform, BSP,
+applications, boot images) in `<design>/<project_name>.sw/`. Keep build reports,
+bitstreams with SHA-256 files, logs, simulation output and evidence in `<design>/build/`.
+Recreate projects from scripts that use project-relative source paths, and keep the
+generated Vivado folders out of version control.
+
 ## Model routing
 
 Use each role's configured model from `~/.claude/agents/`. Opus 5.5 (`opus`) is the default for every engineering role: RTL and DSP at medium effort, board/PCB and cryptography at high, the rest at medium. fpga-architect, verification-engineer and design-reviewer intentionally omit a fixed effort; for difficult architecture, verification or design-review assignments explicitly request high effort when spawning and record it in the task board. Focused documentation (vendor-docs) uses Sonnet 5.5 (`sonnet`) with high effort. Do not silently substitute a different model if the selected one is unavailable; report the limitation before proceeding.
